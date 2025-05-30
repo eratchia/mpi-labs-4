@@ -12,7 +12,7 @@
 
 int getFirstGraphRowOfProcess(int numVertices, int numProcesses, int myRank) {
     if (myRank >= numProcesses) return numVertices;
-    int blockSize = numVertices / (numProcesses + 2);
+    int blockSize = numVertices / (numProcesses * 2);
     return (myRank * blockSize);
     //int remainder = numVertices % numProcesses;
 
