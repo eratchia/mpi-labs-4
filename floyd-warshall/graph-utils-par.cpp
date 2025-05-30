@@ -11,15 +11,17 @@
 #include "graph-utils.h"
 
 int getFirstGraphRowOfProcess(int numVertices, int numProcesses, int myRank) {
-    int blockSize = numVertices / numProcesses;
-    int remainder = numVertices % numProcesses;
+    if (myRank >= numProcesses) return numVertices;
+    int blockSize = numVertices / (numProcesses - 1);
+    return (myRank * blockSize);
+    //int remainder = numVertices % numProcesses;
 
-    if (myRank <= remainder) {
-        blockSize += 1;
-        return myRank * blockSize;
-    } else {
-        return myRank * blockSize + remainder;
-    }
+    //if (myRank <= remainder) {
+        //blockSize += 1;
+        //return myRank * blockSize;
+    //} else {
+        //return myRank * blockSize + remainder;
+    //}
 }
 
 Graph* createAndDistributeGraph(int numVertices, int numProcesses, int myRank) {
