@@ -1,11 +1,11 @@
 CC := CC     # use mpiCC when not on okeanos
-LFLAGS := 
+LFLAGS := -fsave-loopmark
 ALL := blas-dmmmult laplace-seq
 
 all : $(ALL)
 
 blas-dmmmult: blas-dmmmult.cpp
-	$(CC) -o $@ $<  # -lblas # uncomment this when not on okeanos
+	$(CC) $(LFLAGS) -o $@ $<  # -lblas # uncomment this when not on okeanos
 
 laplace-seq: laplace-seq.o laplace-common.o
 	$(CC) $(LFLAGS) -o $@ $^
